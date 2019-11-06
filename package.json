@@ -1,0 +1,14 @@
+{
+  "name": "javascript-fundamentals",
+  "version": "0.0.1",
+  "description": "A sort out for fundamental javascript knowledge",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^24.9.0"
+  }
+}
