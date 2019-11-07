@@ -13,6 +13,8 @@ describe('javascript function / object various traits', () => {
   })
 
   test('ok, it seem like object, function and array they all have __proto__ property, but what are they pointing to?', () => {
+    expect(Function.__proto__).toEqual(Function.prototype)
+
     const a = {
       name: 'Bryan Huang'
     }
@@ -38,9 +40,21 @@ describe('javascript function / object various traits', () => {
     expect(testArr.prototype).toBeUndefined()
   })
 
-  test('now I understand function can have both __proto__ and prototype. what about constructor? what are they?', () => {
+  test('now I understand function can have both __proto__ and prototype. what about function constructor? what are they? and where are they', () => {
+    // The constructor of a function is pointing to Function.constructor
     function Human () {}
-    console.log(Human.constructor === Function.constructor)
+    expect(Human.constructor).toEqual(Function.constructor)
+
+    // The constructor of object a equals to 'Object' function
+    // It seems like object literal is created by 'Object' function
+    var a = {
+      name: 'bryan'
+    }
+    expect(a.constructor).toEqual(Object)
+
+    // Object constructor is pointing to Function constructor
+    // since Object itself is a constructor.
+    expect(Object.constructor).toEqual(Function.constructor)
   })
 
   xtest('what is the difference between __proto__ and prototype', () => {
