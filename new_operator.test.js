@@ -19,10 +19,16 @@ describe('javascript new operator behavior', () => {
     }
 
     Person.prototype.talk = function () {
-      console.log('I say', this.saying)
+      return 'I say ' + this.saying
     }
 
     var a = New(Person, 'i\'m sleepy')
-    a.talk()
+    expect(a.talk()).toEqual('I say i\'m sleepy')
+
+    // The reason that why we have constructor.apply(obj, argsArr.slice(1)) || obj
+    // is because we have to consider if the constructor function returns a customed
+    // object instead of the default one.
+    // Thus, if constructor function returns an object, new operator should return that object
+    // straight ahead, otherwise, returns the newly created object.
   })
 })
