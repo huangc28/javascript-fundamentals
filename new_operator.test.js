@@ -13,7 +13,7 @@ describe('javascript new operator behavior', () => {
       return constructor.apply(obj, argsArr.slice(1)) || obj
     }
 
-    // Let's try our new implementable
+    // Let's try our New implementation
     function Person (saying) {
       this.saying = saying
     }

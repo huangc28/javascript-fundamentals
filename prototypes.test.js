@@ -96,10 +96,12 @@ describe('javascript function / object various traits', () => {
     }
     expect(a.constructor).toEqual(Object)
 
-    // Object constructor is pointing to Function constructor
-    // since Object itself is a constructor.
     expect(Object.constructor).toEqual(Function)
+    expect(Object.__proto__).toEqual(Function.prototype)
+    expect(Object.prototype.__proto__).toBeNull()
+    expect(Object.prototype.constructor).toEqual(Object)
     expect(Function.constructor).toEqual(Function)
+    expect(Function.prototype.constructor).toEqual(Function)
 
     // So the named function "Human" has "constructor" property on itself and it's prototype.
     //
