@@ -100,8 +100,10 @@ describe('javascript function / object various traits', () => {
     expect(Object.__proto__).toEqual(Function.prototype)
     expect(Object.prototype.__proto__).toBeNull()
     expect(Object.prototype.constructor).toEqual(Object)
+    
     expect(Function.constructor).toEqual(Function)
     expect(Function.prototype.constructor).toEqual(Function)
+    expect(Function.prototype.__proto__).toEqual(Object.prototype)
 
     // So the named function "Human" has "constructor" property on itself and it's prototype.
     //
