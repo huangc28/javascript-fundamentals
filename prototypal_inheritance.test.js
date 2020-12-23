@@ -77,4 +77,74 @@ describe('what is prototypal inheritance? And how to implement it?', () => {
 
     expect(bird.walk()).toEqual('walking on 2 legs')
   })
+
+  test('prototype linkage via Object.create', () => {
+    let head = {
+      glasses: 1
+    };
+
+    let table = {
+      pen: 3
+    };
+
+    let bed = {
+      sheet: 1,
+      pillow: 2
+    };
+
+    let pockets = {
+      money: 2000
+    };
+
+    Object.setPrototypeOf(pockets, bed)
+    Object.setPrototypeOf(bed, table)
+    Object.setPrototypeOf(table, head)
+
+    expect(pockets.pen).toEqual(3)
+  })
+
+  test('what is the value of "this"?', () => {
+    let animal = {
+      eat() {
+        this.full = true;
+      }
+    };
+
+    let rabbit = {
+      __proto__: animal
+    };
+
+    rabbit.eat();
+
+    expect(rabbit.hasOwnProperty('full')).toBeTruthy()
+    expect(rabbit.full).toBeTruthy()
+  })
+
+  test('Why are both hamsters full?', () => {
+    let hamster = {
+      stomach: [],
+
+      eat(food) {
+        this.stomach.push(food);
+      }
+    };
+
+    let speedy = {
+      stomach: [],
+      __proto__: hamster
+    };
+
+    let lazy = {
+      stomach: [],
+      __proto__: hamster
+    };
+
+    // This one found the food
+    speedy.eat("apple");
+    //lazy.eat()
+
+    // This one also has it, why? fix please.
+    expect(lazy.stomach.length).toEqual(0)
+    expect(speedy.stomach.length).toEqual(1)
+  })
 })
